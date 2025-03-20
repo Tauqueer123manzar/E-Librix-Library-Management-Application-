@@ -10,12 +10,14 @@ Features
 ✅ Automated Notifications – Email reminders for due books
 ✅ Secure Access – JWT authentication and role-based access
 
-Technology Stack
+Technology Framework
 Frontend: React.js, Redux, Bootstrap
 Backend: Node.js, Express.js, MongoDB
 Authentication: JWT, bcrypt.js
 Database: MongoDB with Mongoose ORM
 Deployment: Cloud (Vercel/Netlify for frontend, Render/Heroku for backend)
+
+
 Use Cases
 📖 For Students & Readers – Easily borrow and return books online
 📑 For Librarians/Admins – Manage books and users effortlessly
