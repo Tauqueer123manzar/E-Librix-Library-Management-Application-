@@ -1,5 +1,6 @@
-# Ignore .env file
-Backend/config/.env
+# Ignore .env 
+Backend/config/config.env
+Backend/node_modules
 
 # Logs
 logs
