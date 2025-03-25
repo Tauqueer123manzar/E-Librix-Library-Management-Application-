@@ -8,7 +8,7 @@ const Navbar = () => {
   };
   return (
   <>
-   <nav className='bg-white shadow-xl'>
+   <nav className='bg-white shadow-xl  fixed top-0 left-0 right-0'>
     <div className='container mx-auto p-4 flex justify-between items-center'>
       <h1 className='text-2xl font-bold text-blue-500'>E Librix</h1>
 
@@ -33,7 +33,7 @@ const Navbar = () => {
     {/* =================================== Navigation Links for mobile screen only ===================================== */}
     {
       isMenuOpen &&(
-       <div className='md:hidden text-lg bg-white p-4 absolute w-full left-0 top-16 z-10 text-center'>
+       <div className='md:hidden text-lg bg-white p-4 absolute w-1/2 h-[330px] left-0 top-16 z-5 text-center'>
         <ul className='flex flex-col space-y-4 text-center'>
          <li><Link to="/" className='hover:text-blue-500'>Home</Link></li>
          <li><Link to="/about" className='hover:text-blue-500'>About</Link></li>
