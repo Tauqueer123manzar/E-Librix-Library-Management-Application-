@@ -33,8 +33,8 @@ const Navbar = () => {
     {/* =================================== Navigation Links for mobile screen only ===================================== */}
     {
       isMenuOpen &&(
-       <div className='md:hidden text-lg bg-white p-4 absolute w-full left-0 top-16 z-5 text-center'>
-        <ul className='flex flex-col space-y-4 text-center'>
+       <div className='md:hidden text-lg p-4 absolute w-full h-[350px] left-0 z-16 text-center bg-amber-500'>
+        <ul className='flex flex-col text-center space-y-4'>
          <li><Link to="/" className='hover:text-blue-500'>Home</Link></li>
          <li><Link to="/about" className='hover:text-blue-500'>About</Link></li>
          <li><Link to="/service" className='hover:text-blue-500'>Service</Link></li>
