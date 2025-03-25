@@ -1,28 +1,62 @@
-import React from "react";
-import { FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight } from "react-icons/fa";
+import React, { useState } from "react";
+import { 
+  FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight, 
+  FaCode, FaLaptopCode, FaDatabase, FaMobileAlt 
+} from "react-icons/fa";
+
+const features = [
+  { icon: <FaUserTag />, title: "User Friendly", description: "Intuitive and user-friendly interface for easy navigation and interaction." },
+  { icon: <FaBookOpen />, title: "Open Access", description: "Free access to a wide range of books and resources." },
+  { icon: <FaBookReader />, title: "Reading Experience", description: "Engaging and visually appealing book covers for a pleasant reading experience." },
+  { icon: <FaFileAlt />, title: "Digital Library", description: "Access books from anywhere with an internet connection." },
+];
+
+const categories = [
+  { name: "Coding", color: "bg-blue-500", icon: <FaCode size={30} /> },
+  { name: "Development", color: "bg-green-500", icon: <FaLaptopCode size={30} /> },
+  { name: "Database", color: "bg-yellow-500", icon: <FaDatabase size={30} /> },
+  { name: "Mobile Apps", color: "bg-pink-500", icon: <FaMobileAlt size={30} /> },
+];
+
+const CategoryCard = ({ name, color, icon }) => {
+  const [clicked, setClicked] = useState(false);
+  
+  return (
+    <div
+      className={`relative w-60 h-72 bg-white shadow-lg rounded-xl flex flex-col items-center justify-center transition-all transform hover:scale-105 ${clicked ? "scale-110" : ""}`}
+      onClick={() => setClicked(!clicked)}
+    >
+      <div className={`w-16 h-16 ${color} text-white flex items-center justify-center rounded-lg`}>
+        {icon}
+      </div>
+      <p className="mt-4 text-gray-700 font-medium">{name}</p>
+
+      {/* Hover Button */}
+      <div className="absolute bottom-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+          Explore
+        </button>
+      </div>
+    </div>
+  );
+};
+
 
 const Home = () => {
-  const features = [
-    { icon: <FaUserTag />, title: "User Friendly", description: "Intuitive and user-friendly interface for easy navigation and interaction." },
-    { icon: <FaBookOpen />, title: "Open Access", description: "Free access to a wide range of books and resources." },
-    { icon: <FaBookReader />, title: "Reading Experience", description: "Engaging and visually appealing book covers for a pleasant reading experience." },
-    { icon: <FaFileAlt />, title: "Digital Library", description: "Access books from anywhere with an internet connection." },
-  ];
-
   return (
-    <section>
+    <section className="bg-white">
       {/* Hero Section */}
       <div
         className="flex flex-col items-center justify-center w-full bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1600431521340-491eca880813?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1600431521340-491eca880813?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fHx8fA%3D%3D")',
           height: "60vh",
         }}
       >
         <h1 className="text-5xl font-bold text-white text-center sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 animate-bounce">
           Welcome to Our Library
         </h1>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 cursor-pointer">
           Get Started
         </button>
       </div>
@@ -62,14 +96,32 @@ const Home = () => {
 
         {/* Image */}
         <div className="relative grid grid-cols-1">
-          <img 
-           src="https://quomodosoft.com/html/library/images/about-slide/slide1.jpg"
-           alt="Library"
-           className="rounded-lg shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto"
-           />
+          <img
+            src="https://quomodosoft.com/html/library/images/about-slide/slide1.jpg"
+            alt="Library"
+            className="rounded-lg shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto"
+          />
           <div className="absolute bottom-4 right-4 bg-white p-3 rounded-full border-blue-600 hover:bg-blue-600 transition cursor-pointer">
             <FaArrowRight className="text-blue-600 text-xl hover:text-white" />
           </div>
+        </div>
+      </div>
+
+
+      {/* Category Section */}
+      <div className="flex flex-col items-center mt-8">
+        <h1 className="text-3xl font-bold text-black text-center border-b-1 mb-4">
+          Our <span className="text-gray-400">Categories</span>
+        </h1>
+        <p className="text-lg mt-2 text-center text-gray-500 md:w-1/2 mb-6">
+          Explore a diverse collection of books and resources across various genres. Whether you're a student, a researcher, or a casual reader, we have something for everyone!
+        </p>
+
+        {/* Category Cards */}
+        <div className="flex flex-wrap justify-center gap-6 p-10">
+          {categories.map((cat, index) => (
+            <CategoryCard key={index} {...cat} />
+          ))}
         </div>
       </div>
     </section>
