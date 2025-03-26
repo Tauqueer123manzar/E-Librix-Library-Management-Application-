@@ -3,6 +3,8 @@ import {
   FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight 
 } from "react-icons/fa";
 import CategoryCard from "../../components/CategoryCard";
+import BookSection from "../../components/Booksection";
+import Footer from "../../components/Footer";
 
 const features = [
   { icon: <FaUserTag />, title: "User Friendly", description: "Intuitive and user-friendly interface for easy navigation and interaction." },
@@ -90,12 +92,13 @@ const Home = () => {
         </p>
 
         {/* Category Cards */}
-        <div className="flex flex-wrap justify-center gap-6 p-10">
+        <div className="flex flex-wrap justify-center gap-6 p-10 cursor-pointer">
           {categories.map((cat, index) => (
             <CategoryCard key={index} {...cat} />
           ))}
         </div>
       </div>
+      <Footer/>
     </section>
   );
 };
