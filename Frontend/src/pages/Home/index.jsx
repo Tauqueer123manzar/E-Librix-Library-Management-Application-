@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { 
-  FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight, 
-  FaCode, FaLaptopCode, FaDatabase, FaMobileAlt 
+  FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight 
 } from "react-icons/fa";
+import CategoryCard from "../../components/CategoryCard";
 
 const features = [
   { icon: <FaUserTag />, title: "User Friendly", description: "Intuitive and user-friendly interface for easy navigation and interaction." },
@@ -12,35 +12,11 @@ const features = [
 ];
 
 const categories = [
-  { name: "Coding", color: "bg-blue-500", icon: <FaCode size={30} /> },
-  { name: "Development", color: "bg-green-500", icon: <FaLaptopCode size={30} /> },
-  { name: "Database", color: "bg-yellow-500", icon: <FaDatabase size={30} /> },
-  { name: "Mobile Apps", color: "bg-pink-500", icon: <FaMobileAlt size={30} /> },
+  { name: "Coding", color: "bg-blue-500", icon: <FaUserTag size={30} /> },
+  { name: "Development", color: "bg-green-500", icon: <FaBookOpen size={30} /> },
+  { name: "Database", color: "bg-yellow-500", icon: <FaBookReader size={30} /> },
+  { name: "Mobile Apps", color: "bg-pink-500", icon: <FaFileAlt size={30} /> },
 ];
-
-const CategoryCard = ({ name, color, icon }) => {
-  const [clicked, setClicked] = useState(false);
-  
-  return (
-    <div
-      className={`w-60 h-72 bg-white shadow-lg rounded-xl flex flex-col items-center justify-center ${clicked ? "scale-120" : ""}`}
-      onClick={() => setClicked(!clicked)}
-    >
-      <div className={`w-16 h-16 ${color} text-white flex items-center justify-center rounded-lg`}>
-        {icon}
-      </div>
-      <p className="mt-4 text-gray-700 font-medium">{name}</p>
-
-      {/* Hover Button */}
-      <div className="bottom-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
-          Explore
-        </button>
-      </div>
-    </div>
-  );
-};
-
 
 const Home = () => {
   return (
@@ -53,7 +29,7 @@ const Home = () => {
           height: "60vh",
         }}
       >
-        <h1 className="text-5xl font-bold text-white text-center sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 animate-pulse">
+        <h1 className="text-5xl font-bold text-white text-center mt-10">
           Welcome to Our Library
         </h1>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 cursor-pointer">
@@ -101,12 +77,8 @@ const Home = () => {
             alt="Library"
             className="rounded-lg shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto"
           />
-          <div className="bottom-4 right-4 bg-white p-3 rounded-full border-blue-600 hover:bg-blue-600 transition cursor-pointer">
-            <FaArrowRight className="text-blue-600 text-xl hover:text-white" />
-          </div>
         </div>
       </div>
-
 
       {/* Category Section */}
       <div className="flex flex-col items-center mt-8">
