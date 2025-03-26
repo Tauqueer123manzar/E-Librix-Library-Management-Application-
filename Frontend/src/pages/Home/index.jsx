@@ -23,7 +23,7 @@ const CategoryCard = ({ name, color, icon }) => {
   
   return (
     <div
-      className={`relative w-60 h-72 bg-white shadow-lg rounded-xl flex flex-col items-center justify-center transition-all transform hover:scale-105 ${clicked ? "scale-110" : ""}`}
+      className={`w-60 h-72 bg-white shadow-lg rounded-xl flex flex-col items-center justify-center ${clicked ? "scale-120" : ""}`}
       onClick={() => setClicked(!clicked)}
     >
       <div className={`w-16 h-16 ${color} text-white flex items-center justify-center rounded-lg`}>
@@ -32,7 +32,7 @@ const CategoryCard = ({ name, color, icon }) => {
       <p className="mt-4 text-gray-700 font-medium">{name}</p>
 
       {/* Hover Button */}
-      <div className="absolute bottom-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="bottom-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
           Explore
         </button>
@@ -53,7 +53,7 @@ const Home = () => {
           height: "60vh",
         }}
       >
-        <h1 className="text-5xl font-bold text-white text-center sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 animate-bounce">
+        <h1 className="text-5xl font-bold text-white text-center sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-10 animate-pulse">
           Welcome to Our Library
         </h1>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 cursor-pointer">
@@ -95,13 +95,13 @@ const Home = () => {
         </div>
 
         {/* Image */}
-        <div className="relative grid grid-cols-1">
+        <div className="grid grid-cols-1">
           <img
             src="https://quomodosoft.com/html/library/images/about-slide/slide1.jpg"
             alt="Library"
             className="rounded-lg shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto"
           />
-          <div className="absolute bottom-4 right-4 bg-white p-3 rounded-full border-blue-600 hover:bg-blue-600 transition cursor-pointer">
+          <div className="bottom-4 right-4 bg-white p-3 rounded-full border-blue-600 hover:bg-blue-600 transition cursor-pointer">
             <FaArrowRight className="text-blue-600 text-xl hover:text-white" />
           </div>
         </div>
