@@ -23,7 +23,7 @@ const Signup = () => {
                        placeholder='Confirm Password'
                        className='border border-gray-300 rounded-md p-2 w-full mt-5 mx-auto'
                        />
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 mx-auto w-full cursor-pointer'>Login</button>
+                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 mx-auto w-full cursor-pointer' type='submit'>Signup</button>
                     <p className='text-center mt-5 gap-2 text-blue'>If you don't have an account then please Signup?  <Link to="/login" className='text-blue-500 hover:text-blue-700 gap-4'>Login</Link></p>
                 </div>
             </div>

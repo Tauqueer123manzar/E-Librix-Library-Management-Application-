@@ -1,9 +1,6 @@
 import React from "react";
-import { 
-  FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight 
-} from "react-icons/fa";
+import { FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight} from "react-icons/fa";
 import CategoryCard from "../../components/CategoryCard";
-import BookSection from "../../components/Booksection";
 import Footer from "../../components/Footer";
 
 const features = [
@@ -98,7 +95,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </section>
   );
 };
