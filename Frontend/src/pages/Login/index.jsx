@@ -6,7 +6,7 @@ const Login= () => {
     <>
         <div className='mx-auto bg-white h-screen flex flex-col m-5 p-4'>
            <p className='text-2xl  text-blue-500 mt-25 text-center' style={{fontFamily:"initial"}}>Welcome Back! Log in to Your Account</p>
-           <div className='flex flex-col bg-white w-full md:w-1/3 h-[450px] md:h-1/2 mx-auto mt-10 shadow-2xl px-10 rounded-lg'>
+           <div className='flex flex-col bg-white w-full md:w-1/3 h-[450px] md:h-1/2 mx-auto mt-10 shadow-2xl px-10 rounded-xl'>
             <h2 className='text-center text-black text-2xl mt-4'>User Login</h2>
              <input 
               type='text'

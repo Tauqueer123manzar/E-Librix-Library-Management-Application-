@@ -7,6 +7,10 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+ const closeMenu=()=>{
+  setIsMenuOpen(false);
+ }
   return (
     <>
       <nav className='bg-white shadow-xl  fixed top-0 left-0 right-0'>
@@ -40,14 +44,14 @@ const Navbar = () => {
         {/* =================================== Navigation Links for mobile screen only ===================================== */}
         {
           isMenuOpen && (
-            <div className='md:hidden text-lg p-4 absolute w-100 h-100 left-0 z-16 text-center bg-white'>
+            <div className='md:hidden text-lg p-4 absolute w-100 max-h-screen left-0 z-16 text-center bg-white'>
               <ul className='flex flex-col text-center space-y-4'>
-                <li><Link to="/" className='hover:text-blue-500'>Home</Link></li>
-                <li><Link to="/about" className='hover:text-blue-500'>About</Link></li>
-                <li><Link to="/service" className='hover:text-blue-500'>Service</Link></li>
-                <li><Link to="/contact" className='hover:text-blue-500'>Contact</Link></li>
+                <li><Link to="/" className='hover:text-blue-500' onClick={closeMenu}>Home</Link></li>
+                <li><Link to="/about" className='hover:text-blue-500' onClick={closeMenu}>About</Link></li>
+                <li><Link to="/service" className='hover:text-blue-500' onClick={closeMenu}>Service</Link></li>
+                <li><Link to="/contact" className='hover:text-blue-500' onClick={closeMenu}>Contact</Link></li>
                 <Link to='/login'>
-                  <button className='bg-blue-500 text-white px-6 py-2 rounded hover:bg-black hover:text-white cursor-pointer'>
+                  <button className='bg-blue-500 text-white px-6 py-2 rounded hover:bg-black hover:text-white cursor-pointer' onClick={closeMenu}>
                     Login
                   </button>
                 </Link>
