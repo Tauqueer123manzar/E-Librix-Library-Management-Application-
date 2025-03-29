@@ -5,6 +5,7 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
+    <>
     <footer className='bg-gray-800 text-white py-10'>
       <div className='container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-8'>
      
@@ -65,6 +66,8 @@ const Footer = () => {
       </div>
       </div>
     </footer>
+    <p className='text-center text-gray-400'>© 2025 E Librix Library. All rights reserved</p>
+    </>
   )
 }
 

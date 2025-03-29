@@ -1,8 +1,7 @@
 import React from 'react'
 import Footer from '../../components/Footer'
-import { 
-  FaUserTag, FaBookOpen, FaBookReader, FaFileAlt, FaArrowRight 
-} from "react-icons/fa";
+import {FaUserTag, FaBookOpen, FaBookReader, FaFileAlt} from "react-icons/fa";
+
 const About = () => {
 
   const features = [
