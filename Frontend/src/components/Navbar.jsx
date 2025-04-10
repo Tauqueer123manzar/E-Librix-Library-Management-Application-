@@ -45,7 +45,7 @@ const Navbar = () => {
         {
           isMenuOpen && (
             <div className='md:hidden text-lg p-4 absolute w-100 max-h-screen left-0 z-16 text-center bg-white'>
-              <ul className='flex flex-col text-center space-y-4'>
+              <ul className='flex flex-col text-center space-y-4 z-10'>
                 <li><Link to="/" className='hover:text-blue-500' onClick={closeMenu}>Home</Link></li>
                 <li><Link to="/about" className='hover:text-blue-500' onClick={closeMenu}>About</Link></li>
                 <li><Link to="/service" className='hover:text-blue-500' onClick={closeMenu}>Service</Link></li>

@@ -6,12 +6,12 @@ const Contact = () => {
     <>
       <section className='bg-white'>
         <div
-          className='flex flex-col items-center justify-center w-full bg-cover bg-center bg-no-repeat bg-fixed'
+          className='flex flex-col items-center justify-center w-full bg-cover bg-center bg-no-repeat bg-fixed md:mt-18 mt-16'
           style={{
             backgroundImage: 'url("https://images.squarespace-cdn.com/content/v1/5e0e8831bd9c76034e82b4ee/1593038776755-81T6ZIC2P38BO266C0P6/ke17ZwdGBToddI8pDm48kDrPwNVXYEunyd5GI-T5dTMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcjnGyVxz4_7fGUBBocNlg5GFIaMd2sRlNBQxXhqLPHNahoHUF39SckYf9CqjRTAfQ/image-asset.jpeg")',
             height: "60vh"
           }}
-        >
+         >
           <h1 className='text-5xl font-bold text-white text-center mt-10'>Contact Us</h1>
         </div>
         <div className='flex-col grid grid-cols-1 md:grid-cols-2 gap-4 p-4 mt-10 mx-auto max-w-7xl'>
