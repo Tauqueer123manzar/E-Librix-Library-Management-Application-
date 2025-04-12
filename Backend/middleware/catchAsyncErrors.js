@@ -4,5 +4,4 @@ export const catchasyncErrors=(fn)=>{
     };
 };
 
-// module.exports=catchasyncErrors;
 module.exports=catchasyncErrors;
