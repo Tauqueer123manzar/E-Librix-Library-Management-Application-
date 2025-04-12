@@ -1,9 +1,4 @@
-class ErrorHandler extends Error{
-    constructor(message,statusCode){
-        super(message);
-        this.statusCode= statusCode;
-    }
-}
+const ErrorHandler=require("./ErrorHandler");
 
 const errorMiddleware = (err, req, res, next) => {
     err.message = err.message || "Internal Server Error";
@@ -36,5 +31,4 @@ const errorMiddleware = (err, req, res, next) => {
         message: errorMessage
     });
 };
-
-module.exports = { ErrorHandler, errorMiddleware };
+module.exports = { errorMiddleware };

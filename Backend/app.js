@@ -5,7 +5,7 @@ const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const connectDB=require("./database/db");
 const {errorMiddleware}=require("./middleware/errorMiddlewares");
-
+const authRouter=require("./routes/authRouter");
 dotenv.config({path:"./config/config.env"});
 
 const app=express();
@@ -21,6 +21,8 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+app.use("/api/v1/auth",authRouter);
 
 connectDB();
 

@@ -1,7 +1,7 @@
-export const catchasyncErrors=(fn)=>{
-    return(req,res,next)=>{
-        Promise.resolve(fn(req,res,next)).catch(next)
+const catchasyncErrors = (fn) => {
+    return (req, res, next) => {
+        Promise.resolve(fn(req, res, next)).catch(next);
     };
 };
 
-module.exports=catchasyncErrors;
+module.exports = catchasyncErrors;
