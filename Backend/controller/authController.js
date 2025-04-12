@@ -1,6 +1,6 @@
-const ErrorHandler=require("../middleware/errorMiddlewares");
+const ErrorHandler=require("../middleware/ErrorHandler");
 const catchasyncErrors=require("../middleware/catchAsyncErrors");
-const {User} =require("../models/userModel");
+const User =require("../models/userModel");
 const sendVerificationCode=require("../utils/sendVerificationCode");
 const bcrypt=require("bcrypt");
 const crypto=require("crypto");
@@ -19,7 +19,7 @@ exports.register=catchasyncErrors(async(req,res,next)=>{
             email,
             accountVerified:false
         });
-        if(registerationAttemptByUser.length>5){
+        if(registerationAttemptByUser.length>20){
             return next(new ErrorHandler("Maximum Registration Attempts Reached",400));
         };
         if(password.length<8 || password.length>16){

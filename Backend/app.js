@@ -4,7 +4,7 @@ const dotenv=require("dotenv");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const connectDB=require("./database/db");
-const {errorMiddleware}=require("./middleware/errorMiddlewares");
+const errorMiddleware=require("./middleware/errormiddleware");
 const authRouter=require("./routes/authRouter");
 dotenv.config({path:"./config/config.env"});
 
