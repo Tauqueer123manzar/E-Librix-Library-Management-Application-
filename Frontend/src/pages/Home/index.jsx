@@ -100,7 +100,7 @@ const Home = () => {
       {/* {Create account section on the Home section} */}
       <div className="flex flex-col items-center justify-center mt-10 bg-blue-500 text-white p-10 roounded-xl shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"> 
-        
+
           <div className="flex flex-col items-center">
             <h1 className="text-3xl font-bold text-black text-center mb-4">
               Create an Account
@@ -109,7 +109,7 @@ const Home = () => {
               Join our community of book lovers and start exploring the world of knowledge today!
             </p>
             <Link to="/signup">
-              <button className="bg-white hover:bg-gray-100 text-black font-bold py-2 px-4 rounded cursor-pointer transition-colors duration-300">
+              <button className="bg-white hover:bg-gray-100 text-black font-bold py-5 px-8 rounded-2xl cursor-pointer transition-colors duration-300">
                 Sign Up Now
               </button>
             </Link>
