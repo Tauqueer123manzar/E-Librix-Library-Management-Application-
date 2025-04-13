@@ -169,17 +169,46 @@ exports.forgotPassword=catchasyncErrors(async(req,res,next)=>{
 });
 
 // ==================================== resetPassword ==========================
-exports.resetPassword=catchasyncErrors(async(req,res,next)=>{
-    const resetToken=req.params.token;
-    const hashedToken=crypto.createHash("sha256").update(resetToken).digest("hex");
-    const user=await User.findOne({
-        resetPasswordToken:hashedToken,
-        resetPasswordTokenExpire:{$gt:Date.now()},
+exports.resetPassword=catchasyncErrors(async (req, res, next) => {
+    const resetToken = req.params.token;
+  
+    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+  
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordTokenExpire: { $gt: Date.now() },
     });
-    if(!user){
-        return next(new ErrorHandler("Reset Password Token is Invalid or Expired",400));
+  
+    if (!user) {
+      return next(new ErrorHandler("Reset Password Token is Invalid or Expired", 400));
     }
-});
+  
+    const { newPassword, confirmPassword } = req.body;
+  
+    if (!newPassword || !confirmPassword) {
+      return next(new ErrorHandler("Please enter all fields", 400));
+    }
+  
+    if (newPassword !== confirmPassword) {
+      return next(new ErrorHandler("Passwords do not match", 400));
+    }
+  
+    if (newPassword.length < 8 || newPassword.length > 16) {
+      return next(new ErrorHandler("Password must be between 8 and 16 characters", 400));
+    }
+  
+    // Hash and update password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+  
+    // Clear reset token fields
+    user.resetPasswordToken = undefined;
+    user.resetPasswordTokenExpire = undefined;
+  
+    await user.save({ validateBeforeSave: false });
+  
+    sendToken(user, 200, res, "Password reset successfully");
+  });
 
 // ===================================== updatePassword ==========================
 exports.updatePassword=catchasyncErrors(async(req,res,next)=>{
