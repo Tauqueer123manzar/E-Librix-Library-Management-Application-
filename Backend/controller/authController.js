@@ -39,3 +39,50 @@ exports.register=catchasyncErrors(async(req,res,next)=>{
     }  
 });
 
+exports.verifyOTP=catchasyncErrors(async(req,res,next)=>{
+    const{email,otp}=req.body;
+    if(!email || !otp){
+        return next(new ErrorHandler("Email or otp is missing",400));
+    };
+    try {
+        const userAllEntries=await User.find({
+            email,
+            accountVerified:false
+        }).sort({createdAt:-1});
+        if(!userAllEntries){
+            return next(new ErrorHandler("User Not Found",404));
+        };
+        let user;
+        if(userAllEntries.length>1){
+            user=userAllEntries[0];
+            await User.deleteMany({
+               _id:{$ne:user._id},
+               email,
+               accountVerified:false 
+            });
+        }else{
+            user=userAllEntries[0];
+        };
+        if(user.verificationCode!==Number(otp)){
+            return next(new ErrorHandler("Invalid OTP",400));
+        };
+        const currentTime=new Date();
+        const verificationCodeExpire=new Date(
+            user.verificationCodeExpire
+        ).
+        getTime();
+        if(currentTime>verificationCodeExpire){
+            return next(new ErrorHandler("OTP Expired",400));
+        };
+
+        user.accountVerified=true;
+        user.verificationCode=null;
+        user.verificationCodeExpire=null;
+        await user.save({validateModifiedOnly:true});
+
+        sendToken(user,201,res,"Account Verified Successfully");
+    } catch (error) {
+        return next(new ErrorHandler("Internal Server Error",500));
+    }
+})
+
