@@ -40,6 +40,7 @@ exports.register=catchasyncErrors(async(req,res,next)=>{
     }  
 });
 
+// ========================== verifyOtp ========================================
 exports.verifyOTP=catchasyncErrors(async(req,res,next)=>{
     const{email,otp}=req.body;
     if(!email || !otp){
@@ -87,5 +88,25 @@ exports.verifyOTP=catchasyncErrors(async(req,res,next)=>{
     }
 });
 
+
+// ================================== login =============================
+exports.login=catchasyncErrors(async(req,res,next)=>{
+    const{email,password}=req.body;
+    if(!email || !password){
+        return next(new ErrorHandler("Please Enter All Fields",400));
+    }
+    const user=await User.findOne({email,accountVerified:true}).select("+password");
+    if(!user){
+        return next(new ErrorHandler("User Not Found",400));
+    }
+    const isPasswordMatched=await bcrypt.compare(password,user.password);
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Invalid Password",400));
+    }
+    if(!user.accountVerified){
+        return next(new ErrorHandler("Please Verify Your Account",400));
+    }
+    sendToken(user,200,res,"Login Successfully");
+});
 
 
