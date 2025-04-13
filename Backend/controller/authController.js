@@ -4,6 +4,7 @@ const User =require("../models/userModel");
 const sendVerificationCode=require("../utils/sendVerificationCode");
 const bcrypt=require("bcrypt");
 const crypto=require("crypto");
+const sendToken=require("../utils/sendToken");
 
 exports.register=catchasyncErrors(async(req,res,next)=>{
     try{
