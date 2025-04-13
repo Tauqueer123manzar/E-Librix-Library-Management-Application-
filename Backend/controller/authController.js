@@ -5,6 +5,7 @@ const sendVerificationCode=require("../utils/sendVerificationCode");
 const bcrypt=require("bcrypt");
 const crypto=require("crypto");
 const sendToken=require("../utils/sendToken");
+const sendEmail=require("../utils/sendEmail");
 const generateForgotPasswordEmailTemplate=require("../utils/generateForgotPasswordEmailTemplate");
 
 exports.register=catchasyncErrors(async(req,res,next)=>{
@@ -144,7 +145,7 @@ exports.forgotPassword=catchasyncErrors(async(req,res,next)=>{
     if(!user){
         return next(new ErrorHandler("User Not Found",400));
     }
-    const resetToken=await user.getResetPasswordToken();
+    const resetToken=await user.generateResetPasswordToken();
     await user.save({validateBeforeSave:false});
     const resetPasswordUrl=`${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
     const message=generateForgotPasswordEmailTemplate(resetPasswordUrl);
@@ -167,6 +168,38 @@ exports.forgotPassword=catchasyncErrors(async(req,res,next)=>{
     }
 });
 
+// ==================================== resetPassword ==========================
+exports.resetPassword=catchasyncErrors(async(req,res,next)=>{
+    const resetToken=req.params.token;
+    const hashedToken=crypto.createHash("sha256").update(resetToken).digest("hex");
+    const user=await User.findOne({
+        resetPasswordToken:hashedToken,
+        resetPasswordTokenExpire:{$gt:Date.now()},
+    });
+    if(!user){
+        return next(new ErrorHandler("Reset Password Token is Invalid or Expired",400));
+    }
+});
+
+// ===================================== updatePassword ==========================
+exports.updatePassword=catchasyncErrors(async(req,res,next)=>{
+    const user=req.user;
+    const {oldPassword,newPassword}=req.body;
+    if(!oldPassword || !newPassword){
+        return next(new ErrorHandler("Please Enter All Fields",400));
+    }
+    if(newPassword.length<8 || newPassword.length>16){
+        return next(new ErrorHandler("Password should be between 8 to 16 characters",400));
+    }
+    const isPasswordMatched=await bcrypt.compare(oldPassword,user.password);
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Old Password is Incorrect",400));
+    }
+    const hashedpassword=await bcrypt.hash(newPassword,10);
+    user.password=hashedpassword;
+    await user.save({validateBeforeSave:false});
+    sendToken(user,200,res,"Password Updated Successfully");
+});
 
 
 

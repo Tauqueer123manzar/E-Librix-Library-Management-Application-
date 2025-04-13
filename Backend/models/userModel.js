@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const jwt=require("jsonwebtoken");
+const crypto=require("crypto");
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -50,6 +51,7 @@ const userSchema=new mongoose.Schema({
   resetPasswordTokenExpire:Date
 },{timestamps:true});
 
+// ================================== generateVerificationCode ==========================================
 userSchema.methods.generateVerificationCode=function(){
     function generateRandomFiveDigitNumber(){
         const firstDigit=Math.floor(Math.random()*9)+1;
@@ -62,11 +64,23 @@ userSchema.methods.generateVerificationCode=function(){
         return verificationCode;
 }
 
+// ================================== generateToken ==========================================
 userSchema.methods.generateToken=function(){
     return jwt.sign({id:this._id},process.env.JWT_SECRET_KEY,{
         expiresIn:process.env.JWT_EXPIRE,
     });
 };
+
+// ================================== generateResetPasswordToken ==========================================
+userSchema.methods.generateResetPasswordToken=function(){
+   const resetToken=crypto.randomBytes(20).toString("hex");
+   this.resetPasswordToken=crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex");
+    this.resetPasswordTokenExpire=Date.now()+15*60*1000;
+    return resetToken; 
+}
 
 const User=mongoose.model("User",userSchema);
 

@@ -1,4 +1,4 @@
-function generateForgotPasswordEmailTemplate(resetLink) {
+function generateForgotPasswordEmailTemplate(resetPasswordUrl) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -52,8 +52,9 @@ function generateForgotPasswordEmailTemplate(resetLink) {
             <h2>Password Reset Request</h2>
             <p>You have requested to reset your password for the Library Management System. Please click the button below to reset your password:</p>
             <p style="text-align: center;">
-                <a class="button" href="${resetLink}" target="_blank">Reset Password</a>
+                <a class="button" href="${resetPasswordUrl}" target="_blank">Reset Password</a>
             </p>
+             <p class="link">${resetPasswordUrl}</p>
             <p>If you did not request this, you can safely ignore this email.</p>
             <div class="footer">
                 &copy; ${new Date().getFullYear()} Library Management System. All rights reserved.
