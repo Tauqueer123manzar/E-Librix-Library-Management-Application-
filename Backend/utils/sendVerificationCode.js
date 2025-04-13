@@ -5,7 +5,7 @@ const sendVerificationCode = async (verificationCode, email, res) => {
     try {
         const message = generateVerificationOtpEmailTemplate(verificationCode);
 
-        // ✅ Await the email sending operation
+        // Await the email sending operation
         await sendEmail({
             email,
             subject: "Verification Code (Bookworm Library Management System)",
