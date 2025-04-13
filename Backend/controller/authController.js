@@ -84,5 +84,7 @@ exports.verifyOTP=catchasyncErrors(async(req,res,next)=>{
     } catch (error) {
         return next(new ErrorHandler("Internal Server Error",500));
     }
-})
+});
+
+
 
