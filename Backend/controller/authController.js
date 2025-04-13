@@ -5,6 +5,7 @@ const sendVerificationCode=require("../utils/sendVerificationCode");
 const bcrypt=require("bcrypt");
 const crypto=require("crypto");
 const sendToken=require("../utils/sendToken");
+const generateForgotPasswordEmailTemplate=require("../utils/generateForgotPasswordEmailTemplate");
 
 exports.register=catchasyncErrors(async(req,res,next)=>{
     try{
@@ -123,14 +124,47 @@ exports.logout=catchasyncErrors(async(req,res,next)=>{
 
 // ======================================== getUser =========================
 exports.getUser=catchasyncErrors(async(req,res,next)=>{
-    const user=await User.findById(req.user._id).select("-password");
+   const user=req.user;
     if(!user){
-        return next(new ErrorHandler("User Not Found",400));
-    };
+         return next(new ErrorHandler("User Not Found",404));
+    }
     res.status(200).json({
         success:true,
         user,
     });
+});
+
+// ================================== forgotPassword ==========================
+exports.forgotPassword=catchasyncErrors(async(req,res,next)=>{
+    const{email}=req.body;
+    if(!email){
+        return next(new ErrorHandler("Please Enter Email",400));
+    }
+    const user=await User.findOne({email});
+    if(!user){
+        return next(new ErrorHandler("User Not Found",400));
+    }
+    const resetToken=await user.getResetPasswordToken();
+    await user.save({validateBeforeSave:false});
+    const resetPasswordUrl=`${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
+    const message=generateForgotPasswordEmailTemplate(resetPasswordUrl);
+    try {
+        await sendEmail({
+            email:user.email,
+            subject:"Library Management System Password Recovery",
+            message,
+        });
+        res.status(200).json({
+            success:true,
+            message:`Email sent to ${user.email} successfully`,
+        });
+        
+    } catch (error) {
+        user.resetPasswordToken=undefined;
+        user.resetPasswordTokenExpire=undefined;
+        await user.save({validateBeforeSave:false});
+        return next(new ErrorHandler(error.message,500));
+    }
 });
 
 
