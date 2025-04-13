@@ -121,6 +121,18 @@ exports.logout=catchasyncErrors(async(req,res,next)=>{
     });
 });
 
+// ======================================== getUser =========================
+exports.getUser=catchasyncErrors(async(req,res,next)=>{
+    const user=await User.findById(req.user._id).select("-password");
+    if(!user){
+        return next(new ErrorHandler("User Not Found",400));
+    };
+    res.status(200).json({
+        success:true,
+        user,
+    });
+});
+
 
 
 

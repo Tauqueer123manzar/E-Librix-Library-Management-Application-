@@ -10,8 +10,6 @@ exports.isAuthenticated=catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("user is not Authenticated",401));
     };
     const decodedData=jwt.verify(token,process.env.JWT_SECRET_KEY);
-    console.log(decodedData);
     req.user=await User.findById(decodedData.id);
     next();
 });
-

@@ -1,10 +1,11 @@
 const express=require("express");
-const {register,verifyOTP,login,logout}=require("../controller/authController");
-
+const {register,verifyOTP,login,logout,getUser}=require("../controller/authController");
+const {isAuthenticated}=require("../middleware/authMiddleware");
 const router=express.Router();
 
 router.post("/register",register);
 router.post("/verify-otp",verifyOTP);
 router.post("/login",login);
-router.get("/logout",logout);
+router.get("/logout",isAuthenticated,logout);
+router.get("/getuser",isAuthenticated,getUser);
 module.exports=router;
