@@ -61,7 +61,7 @@ function generateVerificationOtpEmailTemplate(otpCode) {
 
                         <div class="otp-code">${otpCode}</div>
 
-                        <p>This code is valid for the next <strong>10 minutes</strong>. Please do not share this code with anyone for security reasons.</p>
+                        <p>This code is valid for the next <strong>15 minutes</strong>. Please do not share this code with anyone for security reasons.</p>
                         <p>If you did not request this verification, you can safely ignore this email.</p>
                         <p>Thank you,<br> BookWorm Team. We are committed to providing you with secure and seamless access to your account.</p>
                     </div>
