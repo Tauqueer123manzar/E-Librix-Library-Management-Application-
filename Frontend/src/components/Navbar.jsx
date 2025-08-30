@@ -28,7 +28,7 @@ const Navbar = () => {
           <ul className='hidden md:flex space-x-6 text-lg text-gray-800'>
             <li><Link to="/" className='hover:text-blue-500'>Home</Link></li>
             <li><Link to="/about" className='hover:text-blue-500'>About</Link></li>
-            <li><Link to="/testimonial" className='hover:text-blue-500'>Testimonial</Link></li>
+            {/* <li><Link to="/testimonial" className='hover:text-blue-500'>Testimonial</Link></li> */}
             <li><Link to="/service" className='hover:text-blue-500'>Service</Link></li>
             <li><Link to="/contact" className='hover:text-blue-500'>Contact</Link></li>
           </ul>
@@ -49,7 +49,7 @@ const Navbar = () => {
               <ul className='flex flex-col text-center space-y-4 z-10'>
                 <li><Link to="/" className='hover:text-blue-500' onClick={closeMenu}>Home</Link></li>
                 <li><Link to="/about" className='hover:text-blue-500' onClick={closeMenu}>About</Link></li>
-                <li><Link to="/testimonial" className='hover:text-blue-500' onClick={closeMenu}>Testimonial</Link></li>
+                {/* <li><Link to="/testimonial" className='hover:text-blue-500' onClick={closeMenu}>Testimonial</Link></li> */}
                 <li><Link to="/service" className='hover:text-blue-500' onClick={closeMenu}>Service</Link></li>
                 <li><Link to="/contact" className='hover:text-blue-500' onClick={closeMenu}>Contact</Link></li>
                 <Link to='/login'>
