@@ -43,14 +43,29 @@ const Features=[
     icon:<FaCloudUploadAlt className='text-4xl text-yellow-500 mb-4'/>,
    },
    {
-    
+    id:6,
+    title:"Personalized Bookmarks",
+    description:"Keep track of your favorite books and reading progress with personalized bookmarks.",
+    icon:<FaBookmark className='text-4xl text-pink-500 mb-4'/>,
+   },
+   {
+    id:7,
+    title:"24/7 Support",
+    description:"Get assistance anytime with our round-the-clock customer support.",
+    icon:<FaHeadset className='text-4xl text-teal-500 mb-4'/>,
+   },
+   {
+    id:8,
+    title:"Multi-Device Access",
+    description:"Access your library account and resources from any device, anywhere.",
+    icon:<FaLaptop className='text-4xl text-indigo-500 mb-4'/>,
    }
-]
+];
 
 const index = () => {
   return (
     <>
-      <div >
+      <div className='min-h-screen flex flex-col'>
 
       </div>
     </>
