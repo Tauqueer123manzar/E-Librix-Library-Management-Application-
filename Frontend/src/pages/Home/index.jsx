@@ -104,11 +104,12 @@ const Home = () => {
             <h1 className="text-3xl font-bold text-black text-center mb-4">
               Create an Account
             </h1>
-            <p className="text-lg mt-2 text-center text-black md:w-1/2 mb-6">
+            <p className="text-lg mt-2 text-center text-black text-wrap md:w-1/2 mb-6">
               Join our community of book lovers and start exploring the world of knowledge today!
+              You can sign up in just a few easy steps and gain access.
             </p>
             <Link to="/signup">
-              <button className="bg-blue-500 hover:bg-gray-100 text-black font-bold py-5 px-8 rounded-2xl cursor-pointer transition-colors duration-300">
+              <button className="bg-blue-500 hover:bg-gray-100 text-black font-bold py-5 px-10 rounded-2xl cursor-pointer transition-colors duration-300">
                 Sign Up Now
               </button>
             </Link>
